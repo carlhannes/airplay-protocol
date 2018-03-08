@@ -76,7 +76,7 @@ test('play', function (t) {
     t.equal(req.method, 'POST')
     t.equal(req.url, '/play')
     req.on('data', function (chunk) {
-      t.equal(chunk.toString(), 'Content-Location: foo\nStart-Position: 0\n')
+      t.deepEqual(bplist.parseBuffer(chunk)[0], { 'Content-Location': 'foo', 'Start-Position': 0 })
       res.end()
     })
   })
@@ -102,7 +102,7 @@ test('play', function (t) {
     t.equal(req.method, 'POST')
     t.equal(req.url, '/play')
     req.on('data', function (chunk) {
-      t.equal(chunk.toString(), 'Content-Location: foo\nStart-Position: 0.42\n')
+      t.deepEqual(bplist.parseBuffer(chunk)[0], { 'Content-Location': 'foo', 'Start-Position': 0.42 })
       res.end()
     })
   })

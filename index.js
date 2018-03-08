@@ -49,8 +49,10 @@ AirPlay.prototype.play = function play (url, position, cb) {
 
   this._startReverse()
 
-  var body = 'Content-Location: ' + url + '\n' +
-             'Start-Position: ' + position + '\n'
+  var body = {
+    'Content-Location': url,
+    'Start-Position': position
+  }
 
   this._post('/play', body, cb || noop)
 }
